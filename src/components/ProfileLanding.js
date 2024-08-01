@@ -35,7 +35,7 @@ const ProfileLanding = () => {
 
         <div className='grid grid-cols-3 gap-8 w-11/12 mt-10  mx-auto rounded-xl'>
             {
-              profiles.map((item,index)=>(
+              profiles?.map((item,index)=>(
                 <Profile key={index} title={item.title} description={item.description}/>
               ))
             }
