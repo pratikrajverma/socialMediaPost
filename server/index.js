@@ -6,6 +6,7 @@ const  dbconnect = require('./config/DBconnect')
 dbconnect(); 
 
 app.use(express.json());
+
 app.use(cors({
     origin: '*',
     credentials:true, 
@@ -14,13 +15,12 @@ app.use(cors({
 const profileRoute = require('./routes/profileRoute')
 app.use('/api/v1',profileRoute);
 
-
-app.use(cors())
-
+ 
 
 
 
-const port = process.env.PORT || 4000;
+
+const port = process.env.PORT || 5000;
 
 app.listen(port, (req,res)=>{
     console.log('server connected successfully at port ',port);   
@@ -28,6 +28,6 @@ app.listen(port, (req,res)=>{
  
 
 //default Route
-app.get("/", (req,res) => {
+app.get("/", (req,res) => { 
     res.send(`<h1> This is HOMEPAGE...</h1>`);
 })
