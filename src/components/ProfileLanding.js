@@ -33,7 +33,7 @@ const ProfileLanding = () => {
               className='px-5 py-3 bg-sky-100 text-sky-600 font-bold rounded-lg border-2 hover:bg-sky-200 border-sky-700'>Create Post</button>
         </div>
 
-        <div className='grid grid-cols-3 gap-8 w-11/12 mt-10  mx-auto rounded-xl'>
+        <div className='grid lg:grid-cols-3 grid-cols-1 gap-8 lg:w-11/12 mt-10  mx-auto rounded-xl'>
             {
               profiles?.map((item,index)=>(
                 <Profile key={index} title={item.title} description={item.description}/>

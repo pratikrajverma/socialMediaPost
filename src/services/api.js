@@ -1,4 +1,4 @@
-const backendBaseUrl = 'http://localhost:4000/api/v1'
+const backendBaseUrl =process.dotenv.base_url
 
 export const profileEndpoint = {
     CREATE_PROFILE: `${backendBaseUrl}/createProfile`,
