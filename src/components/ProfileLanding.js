@@ -12,7 +12,7 @@ const ProfileLanding = () => {
     const getprofile = async () => {
       try {
         const response = await getProfile()
-        console.log(response)
+        // console.log(response)
         setProfiles(response)
       } catch (error) {
         console.error(error)

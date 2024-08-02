@@ -12,10 +12,10 @@ app.use(cors({
     credentials:true, 
 }));
 
-const profileRoute = require('./routes/profileRoute')
+const profileRoute = require('./routes/profileRoute') 
 app.use('/api/v1',profileRoute);
 
- 
+  
 
 
 

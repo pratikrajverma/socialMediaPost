@@ -23,13 +23,15 @@ export const createProfile = async (data) =>{
     }
 }
 
+
+
 export const getProfile = async () => {
     try{
-        const response = await apiConnector("GET",GET_PROFILE);
+        const response = await apiConnector("GET",GET_PROFILE); 
 
-        if(!response.data.success){
-            throw new Error(response.message);
-        }
+        if (!response.data.success) {
+            throw new Error(response.data.message)
+          }
 
         console.log('profile fetched successfully',response)
 
