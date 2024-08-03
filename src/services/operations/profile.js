@@ -5,24 +5,39 @@ import {apiConnector} from '../connectapi'
 const {CREATE_PROFILE, GET_PROFILE} =  profileEndpoint;
 
 
-export const createProfile = async (data) =>{
-    try{
-        const response = await apiConnector("POST",CREATE_PROFILE,data);
+export const createProfile = async ( {formData, setLoading}) => {
+    
+    try {
         
-        if(!response.data.data.success){
-            throw new Error(response.message);
+        const toastId = toast.loading('Loading....')
+
+        formData.forEach((value, key) => {
+            console.log(key, value);
+          });
+    
+    
+      const response = await apiConnector("POST", CREATE_PROFILE, formData);
+
+      toast.dismiss(toastId)
+      
+      if (!response.data.success) {
+          throw new Error(response.message);
         }
+        
+        console.log('Profile created successfully', response);
+        toast.success('Post created successfully');
+        
+        return response;
 
-        console.log('profile created successfully',response)
-        toast.success('Post created successfully')
-
-        return response ;
-    }catch(err){
-        console.log('error in creating profile...',err)
-        console.error(err)
+    } catch (err) {
+      console.log('Error in creating profile...', err);
+      toast.error('Error in creating profile.');
+      console.error(err);
     }
-}
 
+   
+  };
+  
 
 
 export const getProfile = async () => {

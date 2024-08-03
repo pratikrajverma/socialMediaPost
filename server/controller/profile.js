@@ -5,9 +5,17 @@ const createProfile = async (req, res) => {
   try {
     const { title, description } = req.body;
 
-    const { image, video } = req.files;
+    const { image, video } = req.files; 
+ 
 
-    console.log("data  :", title, description, image, video);
+    if(!title || !description || !image ||!video) {
+      return res.status(400).json({
+        success: false,
+        message: "all fields are required",
+      });
+    }
+
+    console.log("data  :", title, description, image , video );
 
     //generic function to upload file to cloudinary
 
@@ -33,7 +41,7 @@ const createProfile = async (req, res) => {
     //for videos...................
     const suportedFilesForVideo = ["mp4", "mp3"];
 
-    const videoFileType = video.name.split(".")[1].toLowerCase();
+   const videoFileType = video.name.split(".")[1].toLowerCase();
 
     if (!suportedFilesForVideo.includes(videoFileType)) {
       return res.status(400).json({
@@ -46,14 +54,15 @@ const createProfile = async (req, res) => {
 
     const imageResponse = await UploadFileToCloudinary(image, "ImageUpload");
 
-    // console.log("image response", imageResponse);
+ 
 
-    const videoResponse = await UploadFileToCloudinary(video, "ImageUpload");
+ const videoResponse = await UploadFileToCloudinary(video, "ImageUpload");
 
-    // console.log("image response", imageResponse);
+  
 
+ 
    const profile = await Profile.create({title, description , image:imageResponse.secure_url, video:videoResponse.secure_url })
-
+ 
     res.status(200).json({
       success: true,
       message: "Profile created successfully",
